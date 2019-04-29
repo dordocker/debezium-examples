@@ -4,5 +4,6 @@ build:
   export DEBEZIUM_VERSION=0.9
   docker-compose build
 deploy:
+  export DEBEZIUM_VERSION=0.9
   docker stack deploy -c docker-compose.yaml debezium
   
