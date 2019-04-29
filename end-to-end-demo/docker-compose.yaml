@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   zookeeper:
     image: debezium/zookeeper:${DEBEZIUM_VERSION}
@@ -53,6 +53,7 @@ services:
     links:
      - schema-registry
   connect:
+    image: end-to-end-demo_connect
     build:
       context: debezium-jdbc
     ports:
@@ -73,6 +74,7 @@ services:
      - CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL=http://schema-registry:8081
      - CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL=http://schema-registry:8081
   connect-json:
+    image: end-to-end-demo_connect-json
     build:
       context: debezium-jdbc
     ports:
@@ -108,4 +110,4 @@ services:
     command: >
       /bin/bash -c "
         java -jar /deployments/demo-swarm.jar -Djava.net.preferIPv4Stack=true -Dswarm.http.port=8079
-      "
+      " 
